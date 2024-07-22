@@ -17,6 +17,22 @@ export default function Header() {
         <span className="ml-1" id="cart_count">
           0
         </span>
+        {
+          10 > 5 ? (
+            <>
+            <div className="ml-4 dropdown d-inline">
+              <figure className="avatar avatar-nav">
+                <img src="/images/images.png" alt="" className='rounded-circle'/>
+              </figure>
+              <span style={{color:"white", fontWeight:"bolder"}}>Vishal Pattar</span>
+            </div>
+            </>
+          ) : (
+            <div className="btn ml-4" id="login_btn">
+              Login
+            </div>
+          )
+        }
       </div>
     </nav>
   )
