@@ -7,7 +7,7 @@ export const getRestaurants = () => {
             dispatch({ type: ALL_RESTAURANTS_REQUEST });
             let link = `api/v1/eats/stores`;
             const { data } = await axios.get(link);
-            console.log(data);
+            // console.log(data);
             const { restaurants, count } = data;
             dispatch({
                 type: ALL_RESTAURANTS_SUCCESS,
