@@ -17,7 +17,7 @@ export const restaurantReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 count: action.payload.count,
-                restaurant: action.payload,
+                restaurants: action.payload.restaurants,
             }
         default:
             return state;
