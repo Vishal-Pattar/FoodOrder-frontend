@@ -5,9 +5,14 @@ import Loader from './Loader';
 import Message from './Message';
 
 export default function CountRestaurant() {
-  const { loading: countRestaurantsLoading, error: countRestaurantsError, count: countRestaurants } = useSelector(state => state.restaurants);
+  const { loading: countRestaurantsLoading,
+    error: countRestaurantsError,
+    count: countRestaurants,
+    showVegOnly,
+    pureVegRestaurantsCount } = useSelector(state => state.restaurants);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getRestaurants());
   }, [dispatch]);
@@ -19,7 +24,17 @@ export default function CountRestaurant() {
   ) : (
     <div>
       <p className='NumOfRestro'>
-        {countRestaurants} <span className='Restro'>Restaurant</span>
+        {showVegOnly ? pureVegRestaurantsCount : countRestaurants}{" "}
+        <span className='Restro'>
+          {showVegOnly
+            ? pureVegRestaurantsCount === 1
+              ? "Restaurant"
+              : "Restaurants"
+            : countRestaurants === 1
+              ? "Restaurant"
+              : "Restaurants"
+          }{" "}
+        </span>
       </p>
       <hr />
     </div>
