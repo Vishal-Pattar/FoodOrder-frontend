@@ -10,6 +10,8 @@ import {
 
 const initialState = {
     restaurants: [],
+    loading: false,
+    error: null,
 }
 
 export const restaurantReducer = (state = initialState, action) => {
