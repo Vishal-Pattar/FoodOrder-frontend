@@ -1,8 +1,10 @@
 import React from 'react'
 import { LiaRupeeSignSolid } from "react-icons/lia";
+import { useAlert } from 'react-alert';
 
-export default function FoodItem({fooditem, restaurant}) {
-    console.log(fooditem);
+export default function FoodItem({ fooditem, restaurant }) {
+    const alert = useAlert();
+
     return (
         <div className='col-sm-12 col-md-6 col-lg-3 my-3'>
             <div className="card p-3 rounded">
@@ -19,7 +21,7 @@ export default function FoodItem({fooditem, restaurant}) {
                         {fooditem.price}
                         <br />
                     </p>
-                    <button type='button' id='cart_btn' className='btn btn-primary d-inline ml-4'>
+                    <button type='button' id='cart_btn' className='btn btn-primary d-inline ml-4' >
                         Add to Cart
                     </button>
                     <br />
