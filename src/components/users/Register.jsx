@@ -9,24 +9,26 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isAuthenticated, error, loading } = useSelector((state) => state.auth);
+  const { isAuthenticated, error, loading } = useSelector(
+    (state) => state.auth
+  );
 
   const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
     passwordConfirm: "",
-    phoneNumber: ""
+    phoneNumber: "",
   });
 
   const { name, email, password, passwordConfirm, phoneNumber } = user;
-  const [avatar, setAvatar] = useState('');
-  const [avatarPreview, setAvatarPreview] = useState('/images/images.png');
+  const [avatar, setAvatar] = useState("");
+  const [avatarPreview, setAvatarPreview] = useState("/images/images.png");
 
   // handle redirect with useEffect
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/')
+      navigate("/");
     }
     if (error) {
       alert.error(error);
@@ -34,50 +36,51 @@ const Register = () => {
     }
   }, [dispatch, alert, isAuthenticated, error, navigate]);
 
-
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== passwordConfirm) {
-      alert.error('Password do not match');
-      return
+      alert.error("Password do not match");
+      return;
     }
     const formData = new FormData();
-    formData.set('name', name);
-    formData.set('email', email);
-    formData.set('password', password);
-    formData.set('passwordConfirm', passwordConfirm);
-    formData.set('phoneNumber', phoneNumber);
-    if (avatar === '') {
-      formData.set('avatar', '/images/images.png');
-    }
-    else {
-      formData.set('avatar', avatar);
+    formData.set("name", name);
+    formData.set("email", email);
+    formData.set("password", password);
+    formData.set("passwordConfirm", passwordConfirm);
+    formData.set("phoneNumber", phoneNumber);
+    if (avatar === "") {
+      formData.set("avatar", "/images/images.png");
+    } else {
+      formData.set("avatar", avatar);
     }
 
     dispatch(register(formData));
-  }
+  };
 
   const onChange = (e) => {
-    if (e.target.name === 'avatar') {
+    if (e.target.name === "avatar") {
       const reader = new FileReader();
       reader.onload = () => {
         if (reader.readyState === 2) {
           setAvatarPreview(reader.result);
           setAvatar(reader.result);
         }
-      }
-      reader.readAsDataURL(e.target.files[0])
+      };
+      reader.readAsDataURL(e.target.files[0]);
     } else {
-      setUser({ ...user, [e.target.name]: e.target.value })
+      setUser({ ...user, [e.target.name]: e.target.value });
     }
-  }
-
+  };
 
   return (
     <>
       <div className="row wrapper">
         <div className="col-10 col-lg-5 registration-form">
-          <form className="shadow-lg" encType="multipart/form-data" onSubmit={submitHandler}>
+          <form
+            className="shadow-lg"
+            encType="multipart/form-data"
+            onSubmit={submitHandler}
+          >
             <h1 className="mb-3">Register</h1>
             <div className="form-group">
               <label htmlFor="name_field">Name</label>
