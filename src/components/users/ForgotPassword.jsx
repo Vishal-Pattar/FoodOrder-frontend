@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 const ForgotPassword = () => {
+  const [email, setEmail] = useState("");
   return (
     <>
       <div className="row wrapper">
@@ -13,7 +14,7 @@ const ForgotPassword = () => {
                 type="email"
                 id="email_field"
                 className="form-control"
-                value={"abc@mail.com"}
+                value={email}
               />
             </div>
             <button
