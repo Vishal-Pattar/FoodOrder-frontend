@@ -193,8 +193,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
-    const { data } = await axios.patch(
-      `/api/v1/users/resetPassword/${token}`,
+    const { data } = await axios.patch(`/api/v1/users/resetPassword/${token}`,
       passwords,
       config
     );
@@ -203,9 +202,10 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
       payload: data.success,
     });
   } catch (error) {
+    console.log(error);
     dispatch({
       type: NEW_PASSWORD_FAIL,
-      payload: error.response.data.message,
+      payload: error.response.data.errMessage,
     });
   }
 };
