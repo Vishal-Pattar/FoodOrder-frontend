@@ -10,6 +10,7 @@ export default function Header() {
   const dispatch = useDispatch();
 
   const { user, loading } = useSelector((state) => state.auth);
+  const { cartItems } = useSelector((state) => state.cart);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -27,12 +28,14 @@ export default function Header() {
         <Search />
       </div>
       <div className="col-12 col-md-3 mt-4 mt-md-0">
-        <span className="ml-3" id="cart">
-          Cart
-        </span>
-        <span className="ml-1" id="cart_count">
-          0
-        </span>
+        <Link to="/cart" style={{ textDecoration: "none" }}>
+          <span className="ml-3" id="cart">
+            Cart
+          </span>
+          <span className="ml-1" id="cart_count">
+            {cartItems.length}
+          </span>
+        </Link>
         {user ? (
           <>
             <div className="ml-4 dropdown d-inline">
