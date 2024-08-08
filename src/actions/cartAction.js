@@ -5,7 +5,6 @@ import {
   REMOVE_ITEM_CART,
   UPDATE_CART_ITEM,
 } from "../constants/cartConstants";
-import { type } from "@testing-library/user-event/dist/type";
 
 export const fetchCartItems = () => async (dispatch) => {
   try {
@@ -47,7 +46,7 @@ export const updateCartQuantity =
     try {
       const { user } = getState().auth;
 
-      if (typeof foodItemId === object) {
+      if (typeof foodItemId === "object") {
         foodItemId = foodItemId._id;
       }
       const response = await axios.post("/api/v1/eats/cart/update-cart-item", {
@@ -65,15 +64,18 @@ export const updateCartQuantity =
   };
 
 export const removeItemFromCart =
-  (foodItemId) => async (dispatch, getState) => {
+  (foodItemId, alert) => async (dispatch, getState) => {
     try {
       const { user } = getState().auth;
-      if (typeof foodItemId === object) {
+      if (typeof foodItemId === "object") {
         foodItemId = foodItemId._id;
       }
-      const response = await axios.delete("/api/v1/eats/cart/delete-cart-item", {
-        data: { userId: user._id, foodItemId },
-      });
+      const response = await axios.delete(
+        "/api/v1/eats/cart/delete-cart-item",
+        {
+          data: { userId: user._id, foodItemId },
+        }
+      );
       dispatch({
         type: REMOVE_ITEM_CART,
         payload: response.data,
