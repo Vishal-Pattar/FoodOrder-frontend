@@ -14,12 +14,20 @@ import store from "./store";
 import { loadUser } from "./actions/userAction";
 import Profile from "./components/users/Profile";
 import UpdateProfile from "./components/users/UpdateProfile";
+import { fetchCartItems } from "./actions/cartAction";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function App() {
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
-
+  
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  if (user) {
+    dispatch(fetchCartItems());
+  }
+  
   return (
     <Router>
       <div className="App">
