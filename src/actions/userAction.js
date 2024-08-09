@@ -22,6 +22,7 @@ import {
   NEW_PASSWORD_SUCCESS,
   NEW_PASSWORD_FAIL,
 } from "../constants/userConstant";
+import { CLEAR_CART } from "../constants/cartConstants";
 
 // Login Action
 export const login = (email, password) => async (dispatch) => {
@@ -120,6 +121,7 @@ export const logout = () => async (dispatch) => {
   try {
     await axios.get("/api/v1/users/logout");
     dispatch({ type: LOGOUT_SUCCESS });
+    dispatch({ type: CLEAR_CART });
   } catch (error) {
     dispatch({
       type: LOGOUT_FAIL,
@@ -193,7 +195,8 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
-    const { data } = await axios.patch(`/api/v1/users/resetPassword/${token}`,
+    const { data } = await axios.patch(
+      `/api/v1/users/resetPassword/${token}`,
       passwords,
       config
     );
