@@ -22,7 +22,7 @@ import {
   NEW_PASSWORD_SUCCESS,
   NEW_PASSWORD_FAIL,
 } from "../constants/userConstant";
-import { CLEAR_CART } from "../constants/cartConstants";
+import { CLEAR_CART } from "../constants/cartConstant";
 
 // Login Action
 export const login = (email, password) => async (dispatch) => {
