@@ -4,7 +4,7 @@ import {
   FETCH_CART,
   REMOVE_ITEM_CART,
   UPDATE_CART_ITEM,
-} from "../constants/cartConstants";
+} from "../constants/cartConstant";
 
 export const fetchCartItems = (alert) => async (dispatch) => {
   try {
