@@ -25,7 +25,7 @@ export const createOrder = (session_id) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/v1/eats/order/new",
+      "/api/v1/eats/orders/new",
       { session_id },
       config
     );
@@ -51,16 +51,18 @@ export const payment = (items, restaurant) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post(
-      "/api/v1/payment/process",
+    const { data } = await axios.post("/api/v1/payment/process",
       { items, restaurant },
       config
     );
+
+    console.log(data);
 
     if (data.url) {
       window.location.href = data.url;
     }
   } catch (error) {
+    console.log(error);
     dispatch({
       type: CREATE_PAYMENT_FAIL,
       payload: error.response.data.message,
